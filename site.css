@@ -1216,6 +1216,7 @@ img { display: block; max-width: 100%; }
   display: flex; flex-direction: column;
   background: var(--bg-elevated);
   scrollbar-width: none;
+  border-radius: 12px 0 0 12px;
 }
 .pmodal-media::-webkit-scrollbar { display: none; }
 .pmodal-media .pmodal-img:not(:last-child) { border-bottom: 2px solid var(--bg-elevated); }
@@ -1223,8 +1224,6 @@ img { display: block; max-width: 100%; }
   height: 340px; flex: none;
   background-size: cover; background-position: center;
 }
-.pmodal-media .pmodal-img:first-child { border-radius: 12px 0 0 0; }
-.pmodal-media .pmodal-img:last-child { border-radius: 0 0 0 12px; }
 .pmodal-img--ph {
   height: 340px;
   background: rgba(30,35,40,.7);
@@ -1241,8 +1240,7 @@ img { display: block; max-width: 100%; }
   .pmodal { grid-template-columns: 1fr; max-height: 92vh; overflow-y: auto; }
   .pmodal-media { max-height: none; overflow: visible; }
   .pmodal-body { max-height: none; overflow: visible; }
-  .pmodal-media .pmodal-img:first-child { border-radius: 12px 12px 0 0; }
-  .pmodal-media .pmodal-img:last-child { border-radius: 0 0 12px 12px; }
+  .pmodal-media { border-radius: 12px 12px 0 0; }
   .pmodal-img { height: 280px; }
 }
 .pmodal-name {
