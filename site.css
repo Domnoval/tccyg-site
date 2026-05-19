@@ -866,7 +866,8 @@ img { display: block; max-width: 100%; }
 }
 /* Studio shots shouldn't scale on hover — they have edges that
    would clip awkwardly. Replace with a subtle brighten instead. */
-.pcard:hover .pcard-img--studio { transform: none; filter: brightness(1.04); }
+.pcard:hover .pcard-img--studio .pcard-img-base { transform: none; }
+.pcard:hover .pcard-img--studio { filter: brightness(1.04); }
 
 /* =========================================================
    PRODUCT MODAL — click-to-zoom hint + lightbox overlay
@@ -1143,10 +1144,23 @@ img { display: block; max-width: 100%; }
 }
 .pcard-img {
   height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+.pcard-img-layer {
+  position: absolute; inset: 0;
   background-size: cover; background-position: center;
+}
+.pcard-img-staged {
+  opacity: 0;
+  transition: opacity .4s var(--ease-out);
+}
+.pcard:hover .pcard-img--has-swap .pcard-img-staged { opacity: 1; }
+/* Single-image cards keep a subtle zoom so they still feel alive. */
+.pcard:hover .pcard-img:not(.pcard-img--has-swap) .pcard-img-base {
+  transform: scale(1.04);
   transition: transform .6s var(--ease-out);
 }
-.pcard:hover .pcard-img { transform: scale(1.04); }
 .pcard-img--ph {
   background: rgba(30,35,40,.6);
   display: flex; flex-direction: column;

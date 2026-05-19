@@ -393,7 +393,15 @@ function Products() {
                     'pcard-img'
                     + (p.tintGray ? ' pcard-img--gray-tint' : '')
                     + (p.studioShot ? ' pcard-img--studio' : '')
-                  } style={{ backgroundImage: `url(${p.img})` }} />
+                    + (p.imgStaged ? ' pcard-img--has-swap' : '')
+                  }>
+                    <div className="pcard-img-layer pcard-img-base"
+                         style={{ backgroundImage: `url(${p.img})` }} />
+                    {p.imgStaged && (
+                      <div className="pcard-img-layer pcard-img-staged"
+                           style={{ backgroundImage: `url(${p.imgStaged})` }} />
+                    )}
+                  </div>
                 : <div className="pcard-img pcard-img--ph">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" opacity=".4">
                       <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
