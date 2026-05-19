@@ -684,6 +684,30 @@ Expected: the 5 feature commits (Tasks 1-5) present on `fix-hero-assets`.
 
 ---
 
+## Execution Findings
+
+- **The live catalog is served from a Supabase CMS backend**
+  (`edfekbdijevkglfuvjlb.supabase.co`), not from `cms-loader.jsx`. The embedded
+  catalog in `cms-loader.jsx` and `CATALOG` in `Sections.jsx` are only offline
+  fallbacks. Consequence: the Foo Dog `imgStaged` pair (Task 2) will NOT appear
+  on the live site until `imgStaged` is set on the Foo Dog product in the
+  Supabase CMS — via the admin editor field added in Task 5 (the admin app
+  persists to Supabase). End-to-end Foo Dog hover/modal verification therefore
+  happens after Task 5 / in the Task 6 sweep, using the admin path or a
+  CMS record. Tasks 3-4 code is verified against the 9 real CMS products
+  (single-image degradation + DOM structure) instead.
+
+## Backlog (minor, non-blocking — from code review)
+
+- Sentinel inconsistency: `cms-loader.jsx` uses `imgStaged: ""`, the admin
+  new-product template uses `imgStaged: null`, `Sections.jsx CATALOG` omits the
+  key. All consumers use truthy checks (`&&`, `? :`, `.filter(Boolean)`) so
+  `""`/`null`/absent behave identically — no bug. If ever standardized: make
+  the template `''` and `ImageField`'s Clear handler call `onChange('')`
+  (touches all image fields — do deliberately).
+- `admin.html` new `imgStaged` ImageField is a single 175-char line; the
+  sibling `img` field is wrapped across 3 lines. Cosmetic; wrap to match.
+
 ## Notes / Deferred
 
 - **Per-product empty-vs-staged mapping + generating missing staged shots**
