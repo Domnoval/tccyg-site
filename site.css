@@ -868,6 +868,16 @@ img { display: block; max-width: 100%; }
   background-size: contain;
   background-repeat: no-repeat;
 }
+/* A staged scene is a full photo, not a white-cutout — it should fill
+   the frame even on studio products (overrides the contain above). */
+.pcard-img--studio .pcard-img-staged {
+  background-size: cover;
+  background-color: transparent;
+}
+.pmodal-media .pmodal-img--studio:not(:first-child) {
+  background-size: cover !important;
+  background-color: transparent;
+}
 /* Studio shots shouldn't scale on hover — they have edges that
    would clip awkwardly. Replace with a subtle brighten instead. */
 .pcard:hover .pcard-img.pcard-img--studio:not(.pcard-img--has-swap) .pcard-img-base { transform: none; }
