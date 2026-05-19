@@ -1,0 +1,11 @@
+# Vercel CLI link / local deploy state
+.vercel
+
+# Playwright MCP test artifacts (screenshots, console/network logs)
+.playwright-mcp/
+
+# Stray working drops mistakenly placed in assets/ — NOT site assets.
+# Real product assets follow the photo-*.png / *.jpg naming convention.
+assets/foodog blank1.png
+assets/pedestal - 25-04-2026 23-05-39.png
+assets/pedestal -staged.png
