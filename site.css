@@ -864,9 +864,13 @@ img { display: block; max-width: 100%; }
   background-repeat: no-repeat;
   background-color: #f3efe7;
 }
+.pcard-img--studio .pcard-img-layer {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 /* Studio shots shouldn't scale on hover — they have edges that
    would clip awkwardly. Replace with a subtle brighten instead. */
-.pcard:hover .pcard-img--studio .pcard-img-base { transform: none; }
+.pcard:hover .pcard-img--studio:not(.pcard-img--has-swap) .pcard-img-base { transform: none; }
 .pcard:hover .pcard-img--studio { filter: brightness(1.04); }
 
 /* =========================================================
@@ -1157,9 +1161,9 @@ img { display: block; max-width: 100%; }
 }
 .pcard:hover .pcard-img--has-swap .pcard-img-staged { opacity: 1; }
 /* Single-image cards keep a subtle zoom so they still feel alive. */
+.pcard-img-base { transition: transform .6s var(--ease-out); }
 .pcard:hover .pcard-img:not(.pcard-img--has-swap) .pcard-img-base {
   transform: scale(1.04);
-  transition: transform .6s var(--ease-out);
 }
 .pcard-img--ph {
   background: rgba(30,35,40,.6);
