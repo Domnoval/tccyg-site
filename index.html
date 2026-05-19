@@ -1,71 +1,288 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>TCCYG — Twin Cities Concrete Yard & Garden</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Hand-cast concrete monoliths, LED fissures, and living gardens. Twin Cities Concrete Yard & Garden — Minneapolis / Saint Paul." />
-<link rel="icon" href="assets/logo-icon.png" />
-<link rel="stylesheet" href="hero-styles.css" />
-<link rel="stylesheet" href="site-styles.css" />
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Twin City Concrete Yard &amp; Garden &mdash; Handcrafted Landscape Stone, Minneapolis</title>
+  <link rel="icon" href="assets/favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Inter:wght@400;600&family=Roboto+Slab:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="site.css?v=20260423e"/>
+
+  <meta name="ext-resource-dependency" content="assets/2485 hero 1.jpg" data-resource-id="heroRock" />
+  <meta name="ext-resource-dependency" content="assets/kurt-9706-rock.jpeg" data-resource-id="rock9706" />
+  <meta name="ext-resource-dependency" content="assets/kurt-novaks-rock.jpeg" data-resource-id="rockNovak" />
+  <meta name="ext-resource-dependency" content="assets/reference-1371-rock.jpg" data-resource-id="ref1371" />
+  <meta name="ext-resource-dependency" content="assets/hero-bg.png" data-resource-id="heroBg" />
+  <meta name="ext-resource-dependency" content="assets/logo-icon.png" data-resource-id="logoIcon" />
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script>
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "beamSize": 450,
+      "beamWarmth": "cool",
+      "headline": "address"
+    }/*EDITMODE-END*/;
+  </script>
+
+  <template id="__bundler_thumbnail" data-bg-color="#0a0d10">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="beam" cx="35%" cy="55%" r="30%">
+          <stop offset="0%" stop-color="#ffe4a8" stop-opacity="0.9"/>
+          <stop offset="50%" stop-color="#ff9f1c" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#ff9f1c" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="1200" height="800" fill="#0a0d10"/>
+      <path d="M 550 300 Q 700 200 900 260 Q 1050 320 1050 500 Q 1050 620 850 640 Q 600 650 520 540 Q 470 420 550 300 Z" fill="#3a2f28" opacity="0.85"/>
+      <circle cx="420" cy="440" r="280" fill="url(#beam)"/>
+      <text x="760" y="490" font-family="Georgia, serif" font-weight="900" font-size="90" fill="#1a1a1a" text-anchor="middle">1371</text>
+    </svg>
+  </template>
 </head>
-<body class="site">
-<div id="app"></div>
+<body data-screen-label="Twin City CYG Home">
+  <div id="root"></div>
 
-<script type="text/babel" src="Wordmark.jsx"></script>
-<script type="text/babel" src="HeroScene.jsx"></script>
-<script type="text/babel" src="Sections.jsx"></script>
+  <script type="text/babel" src="components/cms-loader.jsx"></script>
+  <script type="text/babel" src="components/Header.jsx"></script>
+  <script type="text/babel" src="components/Sections.jsx"></script>
+  <script type="text/babel" src="components/Contact.jsx"></script>
+  <script type="text/babel" src="components/Tweaks.jsx"></script>
 
-<script type="text/babel" data-presets="react">
-const { useState } = React;
-
-const DEFAULTS = {
-  "eyebrow": "EST. MINNEAPOLIS · SAINT PAUL",
-  "titleLine1": "BE SEEN. BE FOUND.",
-  "titleLine2": "BE LIT.",
-  "subtitle": "Hand-cast concrete monoliths, LED fissures, and living gardens — one massive installation at a time.",
-  "ctaPrimary": "COMMISSION A PIECE",
-  "ctaSecondary": "VIEW PORTFOLIO",
-  "focalText": "1371",
-  "showNumber": true,
-  "nav": [
-    {"label":"WORK","href":"#work"},
-    {"label":"PROCESS","href":"#process"},
-    {"label":"MATERIALS","href":"#materials"},
-    {"label":"CONTACT","href":"#contact","cta":true}
-  ],
-  "photo": "rock-1371",
-  "embers": true,
-  "statusText": "Booking spring 2026",
-  "sideLabel": "Studio № 001",
-  "sideValue": "44.9778° N / 93.2650° W",
-  "wordmark": {
-    "primary": "TCCYG",
-    "secondary": "Twin Cities Concrete · Yard & Garden"
-  }
-};
+  <script type="text/babel">
 
 function App() {
-  const [cfg] = useState(DEFAULTS);
+  const heroContent = useHero();
+  // Initialize tweaks from CMS hero settings, with TWEAK_DEFAULTS as the safety net.
+  const initialTweaks = {
+    beamSize:   heroContent.beamSize   ?? TWEAK_DEFAULTS.beamSize,
+    beamWarmth: heroContent.beamWarmth ?? TWEAK_DEFAULTS.beamWarmth,
+    headline:   heroContent.headlinePreset ?? TWEAK_DEFAULTS.headline,
+  };
+  const [section, setSection] = React.useState('hero');
+  const [tweaks, setTweaks] = React.useState(initialTweaks);
+  const [tweakMode, setTweakMode] = React.useState(false);
+  const [modal, setModal] = React.useState(null);
+
+  // When CMS content updates, sync tweaks state to the new values.
+  React.useEffect(() => {
+    setTweaks({
+      beamSize:   heroContent.beamSize   ?? TWEAK_DEFAULTS.beamSize,
+      beamWarmth: heroContent.beamWarmth ?? TWEAK_DEFAULTS.beamWarmth,
+      headline:   heroContent.headlinePreset ?? TWEAK_DEFAULTS.headline,
+    });
+  }, [heroContent.beamSize, heroContent.beamWarmth, heroContent.headlinePreset]);
+
+  React.useEffect(() => {
+    const handler = () => {
+      const ids = ['hero', 'gallery', 'products', 'process', 'about', 'contact'];
+      const y = window.scrollY + 120;
+      for (let i = ids.length - 1; i >= 0; i--) {
+        const el = document.getElementById(ids[i]);
+        if (el && el.offsetTop <= y) {setSection(ids[i]);break;}
+      }
+    };
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
+
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      if (!e.data) return;
+      if (e.data.type === '__activate_edit_mode') setTweakMode(true);else
+      if (e.data.type === '__deactivate_edit_mode') setTweakMode(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const updateTweaks = (next) => {
+    setTweaks(next);
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: next }, '*');
+  };
+
+  const navigate = (id) => {
+    setSection(id);
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' });
+  };
+
+  const headlinesFallback = {
+    address: { a: 'Your Address.', b: 'Set in Stone.' },
+    raw: { a: 'Raw Stone.', b: 'Refined Light.' },
+    light: { a: 'Light Up', b: 'Your Landing.' }
+  };
+  const headlines = heroContent.headlinePresets || headlinesFallback;
+  const hl = headlines[tweaks.headline] || headlines.address || headlinesFallback.address;
+
   return (
     <>
-      <a id="top" />
-      <div className="stage">
-        <HeroScene cfg={cfg} variant="classic" />
-      </div>
-      <SectionWork />
-      <SectionProcess />
-      <SectionMaterials />
-      <SectionCommission />
-      <Footer />
-    </>
-  );
+          <Header currentSection={section} onNavigate={navigate} />
+          <FlashlightHero headline={hl} tweaks={tweaks} onCTA={navigate} />
+          <Gallery onOpen={setModal} />
+          <Products />
+          <Process />
+          <About />
+          <Testimonials />
+          <Contact />
+          <Footer />
+          {modal && <WorkModal work={modal} onClose={() => setModal(null)} />}
+          {tweakMode && <TweaksPanel tweaks={tweaks} setTweaks={updateTweaks} />}
+        </>);
+
 }
 
-ReactDOM.createRoot(document.getElementById('app')).render(<App />);
+function FlashlightHero({ headline, tweaks, onCTA }) {
+  const h = useHero();
+  const heroRef = React.useRef(null);
+  const [idle, setIdle] = React.useState(true);
+  const idleTimer = React.useRef(null);
+
+  React.useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    // default position: right side over the rock numerals
+    hero.style.setProperty('--mx', '65%');
+    hero.style.setProperty('--my', '55%');
+
+    const onMove = (e) => {
+      const r = hero.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width * 100;
+      const y = (e.clientY - r.top) / r.height * 100;
+      hero.style.setProperty('--mx', x + '%');
+      hero.style.setProperty('--my', y + '%');
+      setIdle(false);
+      clearTimeout(idleTimer.current);
+      idleTimer.current = setTimeout(() => setIdle(true), 2500);
+    };
+    const onLeave = () => setIdle(true);
+
+    hero.addEventListener('mousemove', onMove);
+    hero.addEventListener('mouseleave', onLeave);
+    return () => {
+      hero.removeEventListener('mousemove', onMove);
+      hero.removeEventListener('mouseleave', onLeave);
+      clearTimeout(idleTimer.current);
+    };
+  }, []);
+
+  // Beam size var
+  React.useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+    const size = tweaks.beamSize || 260;
+    hero.style.setProperty('--beam-size', size + 'px');
+  }, [tweaks.beamSize]);
+
+  const beamSize = tweaks.beamSize || 260;
+  const warmth = tweaks.beamWarmth || 'amber';
+  const beamTints = {
+    amber: 'rgba(255, 180, 90, 0.14)',
+    warm:  'rgba(255, 210, 150, 0.14)',
+    cool:  'rgba(170, 195, 235, 0.08)'
+  };
+  const veilStyle = {
+    // Darker veil overall; beam center dims the photo slightly instead of exposing it at 100%
+    WebkitMaskImage: `radial-gradient(circle ${beamSize}px at var(--mx, 50%) var(--my, 55%), rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 55%, #000 90%)`,
+    maskImage: `radial-gradient(circle ${beamSize}px at var(--mx, 50%) var(--my, 55%), rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 55%, #000 90%)`,
+    background: 'rgba(5, 6, 8, 0.96)'
+  };
+  const beamStyle = {
+    background: `radial-gradient(circle ${Math.round(beamSize * 0.77)}px at var(--mx, 50%) var(--my, 55%), ${beamTints[warmth]} 0%, rgba(255, 160, 60, 0.03) 40%, transparent 75%)`
+  };
+
+  return (
+    <section
+      ref={heroRef}
+      className={'hero ' + (idle ? 'is-idle' : '')}
+      id="hero">
+
+          <div className="hero-photo">
+            <div className="hero-photo-img" style={{ opacity: "1.01" }} />
+          </div>
+          <div className="hero-veil" style={veilStyle} />
+          <div className="hero-beam" style={beamStyle} />
+          <div className="hero-cursor" />
+
+          <div className="hero-content">
+            <div className="hero-eyebrow reveal">{h.eyebrow || 'Be Seen. Be Found. Be Lit.'}</div>
+            <h1 className="reveal d1">
+              {headline.a}<br />
+              <span className="glow">{headline.b}</span>
+            </h1>
+            <p className="subtitle reveal d2">
+              {h.subtitle || 'Custom concrete landscape rocks with mounted house numbers and backlit amber LED. Hand-sculpted in Minneapolis — built for Minnesota winters, meant to outlast the mailbox.'}
+            </p>
+            <div className="hero-buttons reveal d3">
+              <a className="btn btn-primary" onClick={() => onCTA((h.ctaPrimary && h.ctaPrimary.target) || 'contact')}>
+                {(h.ctaPrimary && h.ctaPrimary.label) || 'Start Your Piece'}
+              </a>
+              <a className="btn btn-secondary" onClick={() => onCTA((h.ctaSecondary && h.ctaSecondary.target) || 'gallery')}>
+                {(h.ctaSecondary && h.ctaSecondary.label) || 'See The Work'}
+              </a>
+            </div>
+            <div className="hero-kicker reveal d4">
+              {((h.kickers && h.kickers.length) ? h.kickers : [
+                { num: '6yr',  lbl: 'In Business' },
+                { num: '50+',  lbl: 'Pieces Cast' },
+                { num: '100%', lbl: 'Hand-Cast Cement' },
+              ]).map((k, i) => (
+                <div className="kick" key={i}><span className="num">{k.num}</span><span className="lbl">{k.lbl}</span></div>
+              ))}
+            </div>
+          </div>
+
+          <div className="hero-hint">{h.hintText || 'Move to illuminate'}</div>
+        </section>);
+
+}
+
+function WorkModal({ work, onClose }) {
+  if (!work) return null;
+  return (
+    <div onClick={onClose} style={{
+      position: 'fixed', inset: 0, background: 'rgba(10,13,16,.88)', backdropFilter: 'blur(10px)',
+      zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem'
+    }}>
+          <div onClick={(e) => e.stopPropagation()} style={{
+        maxWidth: 900, width: '100%', maxHeight: '90vh', overflow: 'auto',
+        background: 'var(--bg-elevated)', border: '1px solid rgba(255,255,255,.1)',
+        borderRadius: 12, boxShadow: '0 40px 120px rgba(0,0,0,.8)'
+      }}>
+            <div style={{
+          height: 400, backgroundImage: `url(${work.img})`,
+          backgroundSize: 'cover', backgroundPosition: 'center',
+          borderRadius: '12px 12px 0 0'
+        }} />
+            <div style={{ padding: '2rem 2.5rem 2.5rem' }}>
+              <span className="section-eyebrow">{work.tag}</span>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '2rem', textTransform: 'uppercase', marginBottom: '.5rem' }}>
+                {work.title}
+              </h3>
+              <p style={{ color: 'var(--fg-muted)', marginBottom: '1rem', fontSize: '.85rem', letterSpacing: '.15em', textTransform: 'uppercase' }}>
+                {work.loc}
+              </p>
+              <p style={{ color: 'var(--fg)', lineHeight: 1.7 }}>{work.desc}</p>
+              <button className="btn btn-secondary" style={{ marginTop: '1.5rem' }} onClick={onClose}>Close</button>
+            </div>
+          </div>
+        </div>);
+
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <SiteContentProvider>
+    <App />
+  </SiteContentProvider>
+);
 </script>
 </body>
 </html>
