@@ -430,29 +430,34 @@ function Products() {
       {modal && (
         <div className="pmodal-backdrop" onClick={() => setModal(null)}>
           <div className="pmodal" onClick={e => e.stopPropagation()}>
-            {modal.img
-              ? <div
-                  className={
-                    'pmodal-img'
-                    + (modal.tintGray ? ' pmodal-img--gray-tint' : '')
-                    + (modal.studioShot ? ' pmodal-img--studio' : '')
-                  }
-                  style={{ backgroundImage: `url(${modal.img})` }}
-                  onClick={() => setZoom(modal.img)}
-                  role="button"
-                  aria-label="Zoom photo"
-                >
-                  <span className="pmodal-img-zoom-hint">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/>
-                    </svg>
-                    Click to zoom
-                  </span>
-                </div>
-              : <div className="pmodal-img pmodal-img--ph">
-                  <span>Photo Coming Soon</span>
-                </div>
-            }
+            {(() => {
+              const shots = [modal.img, modal.imgStaged].filter(Boolean);
+              const cls = (modal.tintGray ? ' pmodal-img--gray-tint' : '')
+                        + (modal.studioShot ? ' pmodal-img--studio' : '');
+              return shots.length
+                ? <div className="pmodal-media">
+                    {shots.map((src, i) => (
+                      <div
+                        key={src}
+                        className={'pmodal-img' + cls}
+                        style={{ backgroundImage: `url(${src})` }}
+                        onClick={() => setZoom(src)}
+                        role="button"
+                        aria-label="Zoom photo"
+                      >
+                        <span className="pmodal-img-zoom-hint">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/>
+                          </svg>
+                          Click to zoom
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                : <div className="pmodal-media">
+                    <div className="pmodal-img pmodal-img--ph"><span>Photo Coming Soon</span></div>
+                  </div>;
+            })()}
             <div className="pmodal-body">
               <span className="section-eyebrow">{modal.category}</span>
               <h3 className="pmodal-name">{modal.name}</h3>
