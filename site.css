@@ -870,7 +870,7 @@ img { display: block; max-width: 100%; }
 }
 /* Studio shots shouldn't scale on hover — they have edges that
    would clip awkwardly. Replace with a subtle brighten instead. */
-.pcard:hover .pcard-img--studio:not(.pcard-img--has-swap) .pcard-img-base { transform: none; }
+.pcard:hover .pcard-img.pcard-img--studio:not(.pcard-img--has-swap) .pcard-img-base { transform: none; }
 .pcard:hover .pcard-img--studio { filter: brightness(1.04); }
 
 /* =========================================================
