@@ -720,7 +720,7 @@ function CatalogEditor({ data, set }) {
   const removeItem = (i) => set(deepSet(data, 'catalog', catalog.filter((_, j) => j !== i)));
   const addItem = () => set(deepSet(data, 'catalog', [...catalog, {
     id: uid(), name: 'New Product', category: 'Planter Urn', price: '$0',
-    tagline: '', desc: '', img: null, specs: []
+    tagline: '', desc: '', img: null, imgStaged: null, specs: []
   }]));
   const moveItem = (i, dir) => {
     const j = i + dir;
@@ -759,6 +759,7 @@ function CatalogEditor({ data, set }) {
           <TextField label="Description (full paragraph)" value={p.desc} onChange={v => updateItem(i, { ...p, desc: v })} multiline />
           <ImageField label="Product photo" value={p.img} onChange={v => updateItem(i, { ...p, img: v })}
                       help="Upload or paste a URL. Falls back to a placeholder if blank." />
+          <ImageField label="Staged photo (hover/detail)" value={p.imgStaged} onChange={v => updateItem(i, { ...p, imgStaged: v })} help="Shown on card hover and beside the empty shot in the detail view. Leave blank if none yet." />
           <KvListEditor label="Specs (Height, Weight, Material, etc.)"
                         value={p.specs} onChange={v => updateItem(i, { ...p, specs: v })}
                         kLabel="Spec name" vLabel="Spec value" />
