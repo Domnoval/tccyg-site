@@ -436,7 +436,7 @@ function Products() {
                         + (modal.studioShot ? ' pmodal-img--studio' : '');
               return shots.length
                 ? <div className="pmodal-media">
-                    {shots.map((src, i) => (
+                    {shots.map(src => (
                       <div
                         key={src}
                         className={'pmodal-img' + cls}

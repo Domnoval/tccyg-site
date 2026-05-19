@@ -1213,16 +1213,20 @@ img { display: block; max-width: 100%; }
 }
 .pmodal-media {
   max-height: 90vh; overflow-y: auto;
-  display: flex; flex-direction: column; gap: 2px;
+  display: flex; flex-direction: column;
   background: var(--bg-elevated);
+  scrollbar-width: none;
 }
+.pmodal-media::-webkit-scrollbar { display: none; }
+.pmodal-media .pmodal-img:not(:last-child) { border-bottom: 2px solid var(--bg-elevated); }
 .pmodal-img {
   height: 340px; flex: none;
   background-size: cover; background-position: center;
 }
 .pmodal-media .pmodal-img:first-child { border-radius: 12px 0 0 0; }
+.pmodal-media .pmodal-img:last-child { border-radius: 0 0 0 12px; }
 .pmodal-img--ph {
-  height: 260px;
+  height: 340px;
   background: rgba(30,35,40,.7);
   display: flex; align-items: center; justify-content: center;
   color: var(--fg-dim);
@@ -1238,6 +1242,7 @@ img { display: block; max-width: 100%; }
   .pmodal-media { max-height: none; overflow: visible; }
   .pmodal-body { max-height: none; overflow: visible; }
   .pmodal-media .pmodal-img:first-child { border-radius: 12px 12px 0 0; }
+  .pmodal-media .pmodal-img:last-child { border-radius: 0 0 12px 12px; }
   .pmodal-img { height: 280px; }
 }
 .pmodal-name {
