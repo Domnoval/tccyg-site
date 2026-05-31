@@ -228,7 +228,7 @@ function HeroScene({ cfg, variant = 'classic', showChrome = true }) {
         <HeroContent {...cfg} />
       )}
 
-      {!isCenter && showFocal && cfg.photo !== 'rock-1371' && <FocalNumber text={cfg.focalText} show />}
+      {!isCenter && showFocal && <FocalNumber text={cfg.focalText} show />}
       {showChrome && <ScrollCue />}
       {showChrome && !isMinimal && <StatusPill text={cfg.statusText} />}
       {showChrome && !isCenter && <SideIndex label={cfg.sideLabel} value={cfg.sideValue} />}
