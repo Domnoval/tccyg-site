@@ -236,5 +236,55 @@ function HeroScene({ cfg, variant = 'classic', showChrome = true }) {
   );
 }
 
+function TweaksPanel({ cfg, onChange }) {
+  const [open, setOpen] = useState(false);
+
+  const field = (label, key, type = 'text') => (
+    <div className="tweaks-row">
+      <label>{label}</label>
+      <input
+        type={type}
+        value={cfg[key] ?? ''}
+        onChange={e => onChange(key, e.target.value)}
+      />
+    </div>
+  );
+
+  return open ? (
+    <div className="tweaks-panel">
+      <button className="tweaks-close" onClick={() => setOpen(false)}>✕</button>
+      <h4>Admin</h4>
+
+      <h4 style={{ marginTop: '1rem' }}>Buttons</h4>
+      {field('Primary Button', 'ctaPrimary')}
+      {field('Secondary Button', 'ctaSecondary')}
+
+      <h4 style={{ marginTop: '1rem' }}>Hero Copy</h4>
+      {field('Eyebrow', 'eyebrow')}
+      {field('Headline Line 1', 'titleLine1')}
+      {field('Headline Line 2', 'titleLine2')}
+      {field('Subtitle', 'subtitle')}
+      {field('Status Pill', 'statusText')}
+      {field('Focal Number', 'focalText')}
+
+      <h4 style={{ marginTop: '1rem' }}>Photo</h4>
+      <div className="photo-grid">
+        {Object.entries(PHOTOS).map(([key, p]) => (
+          <button
+            key={key}
+            title={p.label}
+            className={cfg.photo === key ? 'sel' : ''}
+            style={{ backgroundImage: `url(${p.src})` }}
+            onClick={() => onChange('photo', key)}
+          />
+        ))}
+      </div>
+    </div>
+  ) : (
+    <button className="tweaks-toggle" onClick={() => setOpen(true)}>⚙ Admin</button>
+  );
+}
+
 window.HeroScene = HeroScene;
+window.TweaksPanel = TweaksPanel;
 window.PHOTOS = PHOTOS;
