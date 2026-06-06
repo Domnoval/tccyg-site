@@ -42,6 +42,15 @@ const FALLBACK_CONTENT = /* SEED_INJECT_START */
     ],
     "ctaLabel": "Get a Quote"
   },
+  "buttons": {
+    "headerCta":       { "label": "Get a Quote",  "target": "contact", "style": "primary",   "visible": true },
+    "featuredQuote":   { "label": "Get a Quote",  "target": "contact", "style": "primary",   "visible": true },
+    "featuredDetails": { "label": "View Details",                      "style": "secondary", "visible": true },
+    "gridQuote":       { "label": "Quote",        "target": "contact", "style": "secondary", "visible": true },
+    "modalQuote":      { "label": "Get a Quote",  "target": "contact", "style": "primary",   "visible": true },
+    "modalClose":      { "label": "Close",                             "style": "secondary", "visible": true },
+    "contactSubmit":   { "label": "Send Request",                      "style": "primary" }
+  },
   "hero": {
     "eyebrow": "Be Seen. Be Found. Be Lit.",
     "headlinePreset": "address",
@@ -51,8 +60,8 @@ const FALLBACK_CONTENT = /* SEED_INJECT_START */
       "light":   { "a": "Light Up",       "b": "Your Landing." }
     },
     "subtitle": "Custom concrete landscape rocks with mounted house numbers and backlit amber LED. Hand-sculpted in Minneapolis — built for Minnesota winters, meant to outlast the mailbox.",
-    "ctaPrimary":   { "label": "Start Your Piece", "target": "contact" },
-    "ctaSecondary": { "label": "See The Work",     "target": "gallery" },
+    "ctaPrimary":   { "label": "Start Your Piece", "target": "contact", "style": "primary",   "visible": true },
+    "ctaSecondary": { "label": "See The Work",     "target": "gallery", "style": "secondary", "visible": true },
     "beamSize": 450,
     "beamWarmth": "cool",
     "hintText": "Move to illuminate",
@@ -463,6 +472,34 @@ function useHardNumbers() { return useSiteContent().hardNumbers || { items: [] }
 function useContact()     { return useSiteContent().contact     || {}; }
 function useFooter()      { return useSiteContent().footer      || { links: [] }; }
 function useBrand()       { return useSiteContent().brand       || {}; }
+function useButtons()     { return useSiteContent().buttons     || {}; }
+
+// ──────────────────────────────────────────────────────────────────────
+//  Button helpers — every customer-facing button reads its config from
+//  the CMS `buttons` block (or hero.ctaPrimary/ctaSecondary). A target
+//  is either a section id (smooth-scroll) or a full URL (https:/tel:/
+//  mailto: — opened appropriately). Old DB rows without these fields
+//  fall back to the hardcoded defaults, so nothing breaks.
+// ──────────────────────────────────────────────────────────────────────
+function buttonAction(target) {
+  if (!target) return;
+  if (/^(https?:|mailto:|tel:|sms:)/i.test(target)) {
+    if (/^https?:/i.test(target)) window.open(target, '_blank', 'noopener');
+    else window.location.href = target;
+    return;
+  }
+  const el = document.getElementById(target);
+  if (el) window.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' });
+}
+
+function btnClass(cfg, fallbackStyle, extra) {
+  const style = (cfg && cfg.style) || fallbackStyle || 'primary';
+  return 'btn btn-' + style + (extra ? ' ' + extra : '');
+}
+
+function btnVisible(cfg) {
+  return !cfg || cfg.visible !== false;
+}
 
 // Expose as window globals so subsequent <script type="text/babel"> tags
 // (Header.jsx, Sections.jsx, Contact.jsx, the inline App script) can use them.
@@ -472,5 +509,6 @@ Object.assign(window, {
   useSiteContent,
   useHero, useNav, useGallery, useSale, useCatalog,
   useProcess, useAbout, useHardNumbers, useContact, useFooter, useBrand,
+  useButtons, buttonAction, btnClass, btnVisible,
   FALLBACK_CONTENT,
 });

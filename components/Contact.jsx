@@ -96,6 +96,7 @@ function Contact() {
   };
 
   const sending = status === 'sending';
+  const submitBtn = (useButtons().contactSubmit) || {};
 
   return (
     <section className="section" id="contact">
@@ -192,8 +193,8 @@ function Contact() {
             </div>
             <span className="field-foot">A picture is worth a thousand words. Max 8MB. JPG, PNG, or HEIC.</span>
           </div>
-          <button className="btn btn-primary" type="submit" disabled={sending} style={{ opacity: sending ? 0.6 : 1 }}>
-            {sending ? 'Sending…' : 'Send Request'}
+          <button className={btnClass(submitBtn, 'primary')} type="submit" disabled={sending} style={{ opacity: sending ? 0.6 : 1 }}>
+            {sending ? 'Sending…' : (submitBtn.label || 'Send Request')}
           </button>
 
           {status === 'sent' && (

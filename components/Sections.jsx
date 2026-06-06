@@ -331,6 +331,15 @@ function Products() {
     if (el) window.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' });
   };
 
+  // ── CMS-configurable buttons (label / destination / style / show-hide) ──
+  const buttons = useButtons();
+  const bFeatQuote   = buttons.featuredQuote   || {};
+  const bFeatDetails = buttons.featuredDetails || {};
+  const bGridQuote   = buttons.gridQuote       || {};
+  const bModalQuote  = buttons.modalQuote      || {};
+  const bModalClose  = buttons.modalClose      || {};
+  const fireQuote = (cfg) => buttonAction((cfg && cfg.target) || 'contact');
+
   return (
     <section className="section alt" id="products">
       <div className="section-head">
@@ -378,8 +387,12 @@ function Products() {
               ))}
             </div>
             <div className="pcard-actions">
-              <button className="btn btn-primary" onClick={scrollToContact}>Get a Quote</button>
-              <button className="btn btn-secondary" onClick={() => setModal(featured)}>View Details</button>
+              {btnVisible(bFeatQuote) && (
+                <button className={btnClass(bFeatQuote, 'primary')} onClick={() => fireQuote(bFeatQuote)}>{bFeatQuote.label || 'Get a Quote'}</button>
+              )}
+              {btnVisible(bFeatDetails) && (
+                <button className={btnClass(bFeatDetails, 'secondary')} onClick={() => setModal(featured)}>{bFeatDetails.label || 'View Details'}</button>
+              )}
             </div>
           </div>
         </div>
@@ -417,10 +430,12 @@ function Products() {
                 <p className="pcard-tagline">{p.tagline}</p>
                 <div className="pcard-foot">
                   <span className="pcard-price"><PriceTag str={p.price} compact /></span>
-                  <button
-                    className="btn btn-secondary btn-sm"
-                    onClick={(e) => { e.stopPropagation(); scrollToContact(); }}
-                  >Quote</button>
+                  {btnVisible(bGridQuote) && (
+                    <button
+                      className={btnClass(bGridQuote, 'secondary', 'btn-sm')}
+                      onClick={(e) => { e.stopPropagation(); fireQuote(bGridQuote); }}
+                    >{bGridQuote.label || 'Quote'}</button>
+                  )}
                 </div>
               </div>
             </div>
@@ -489,8 +504,10 @@ function Products() {
               </div>
 
               <div className="pmodal-actions">
-                <button className="btn btn-primary" onClick={() => { setModal(null); scrollToContact(); }}>Get a Quote</button>
-                <button className="btn btn-secondary" onClick={() => setModal(null)}>Close</button>
+                {btnVisible(bModalQuote) && (
+                  <button className={btnClass(bModalQuote, 'primary')} onClick={() => { setModal(null); fireQuote(bModalQuote); }}>{bModalQuote.label || 'Get a Quote'}</button>
+                )}
+                <button className={btnClass(bModalClose, 'secondary')} onClick={() => setModal(null)}>{bModalClose.label || 'Close'}</button>
               </div>
             </div>
           </div>

@@ -9,7 +9,14 @@ function Header({ currentSection, onNavigate }) {
     { id: 'process',  label: 'Process' },
     { id: 'about',    label: 'About' },
   ];
-  const ctaLabel = nav.ctaLabel || 'Get a Quote';
+  const buttons   = useButtons();
+  const headerBtn = buttons.headerCta || {};
+  const ctaLabel  = headerBtn.label || nav.ctaLabel || 'Get a Quote';
+  const goBtn = (cfg) => {
+    const t = (cfg && cfg.target) || 'contact';
+    setMenuOpen(false);
+    /^(https?:|mailto:|tel:|sms:)/i.test(t) ? buttonAction(t) : onNavigate(t);
+  };
   const wmTop = brand.wordmarkTop || 'Twin City Concrete';
   const wmBot = brand.wordmarkBot || 'Yard & Garden';
   const logoSrc = brand.logoSrc || 'assets/logo-icon.png';
@@ -41,7 +48,9 @@ function Header({ currentSection, onNavigate }) {
           {links.map(({ id, label }) => (
             <a key={id} className={currentSection === id ? 'active' : ''} onClick={() => go(id)}>{label}</a>
           ))}
-          <a className="btn btn-primary btn-sm" onClick={() => go('contact')}>{ctaLabel}</a>
+          {btnVisible(headerBtn) && (
+            <a className={btnClass(headerBtn, 'primary', 'btn-sm')} onClick={() => goBtn(headerBtn)}>{ctaLabel}</a>
+          )}
         </nav>
 
         {/* Hamburger — mobile only */}
@@ -67,7 +76,9 @@ function Header({ currentSection, onNavigate }) {
               {label}
             </a>
           ))}
-          <a className="btn btn-primary mobile-cta" onClick={() => go('contact')}>{ctaLabel}</a>
+          {btnVisible(headerBtn) && (
+            <a className={btnClass(headerBtn, 'primary', 'mobile-cta')} onClick={() => goBtn(headerBtn)}>{ctaLabel}</a>
+          )}
         </nav>
       </div>
 

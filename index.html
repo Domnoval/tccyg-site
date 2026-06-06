@@ -222,12 +222,24 @@ function FlashlightHero({ headline, tweaks, onCTA }) {
               {h.subtitle || 'Custom concrete landscape rocks with mounted house numbers and backlit amber LED. Hand-sculpted in Minneapolis — built for Minnesota winters, meant to outlast the mailbox.'}
             </p>
             <div className="hero-buttons reveal d3">
-              <a className="btn btn-primary" onClick={() => onCTA((h.ctaPrimary && h.ctaPrimary.target) || 'contact')}>
-                {(h.ctaPrimary && h.ctaPrimary.label) || 'Start Your Piece'}
-              </a>
-              <a className="btn btn-secondary" onClick={() => onCTA((h.ctaSecondary && h.ctaSecondary.target) || 'gallery')}>
-                {(h.ctaSecondary && h.ctaSecondary.label) || 'See The Work'}
-              </a>
+              {btnVisible(h.ctaPrimary) && (
+                <a className={btnClass(h.ctaPrimary, 'primary')}
+                   onClick={() => {
+                     const t = (h.ctaPrimary && h.ctaPrimary.target) || 'contact';
+                     /^(https?:|mailto:|tel:|sms:)/i.test(t) ? buttonAction(t) : onCTA(t);
+                   }}>
+                  {(h.ctaPrimary && h.ctaPrimary.label) || 'Start Your Piece'}
+                </a>
+              )}
+              {btnVisible(h.ctaSecondary) && (
+                <a className={btnClass(h.ctaSecondary, 'secondary')}
+                   onClick={() => {
+                     const t = (h.ctaSecondary && h.ctaSecondary.target) || 'gallery';
+                     /^(https?:|mailto:|tel:|sms:)/i.test(t) ? buttonAction(t) : onCTA(t);
+                   }}>
+                  {(h.ctaSecondary && h.ctaSecondary.label) || 'See The Work'}
+                </a>
+              )}
             </div>
             <div className="hero-kicker reveal d4">
               {((h.kickers && h.kickers.length) ? h.kickers : [

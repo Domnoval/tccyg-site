@@ -660,11 +660,9 @@ function HeroEditor({ data, set }) {
 
       <TextField label="Subtitle" value={h.subtitle} onChange={v => u('subtitle', v)} multiline />
 
-      <div className="field-row">
-        <TextField label="Primary CTA label" value={h.ctaPrimary?.label}
-          onChange={v => set(deepSet(data, ['hero', 'ctaPrimary', 'label'], v))} />
-        <TextField label="Secondary CTA label" value={h.ctaSecondary?.label}
-          onChange={v => set(deepSet(data, ['hero', 'ctaSecondary', 'label'], v))} />
+      <div className="notice">
+        The two hero buttons (text, destination, style, show/hide) are managed in
+        the <strong>Buttons</strong> tab — along with every other button on the site.
       </div>
 
       <Card title="Beam settings" defaultCollapsed>
@@ -687,6 +685,118 @@ function HeroEditor({ data, set }) {
           </div>
         ))}
       </Card>
+    </>
+  );
+}
+
+// ── Buttons editor — every customer-facing button on the site ─────────
+const BTN_TARGETS = [
+  { value: 'hero',         label: 'Top of page (Hero)' },
+  { value: 'gallery',      label: 'Recent Work (Gallery)' },
+  { value: 'products',     label: 'Products (Catalog)' },
+  { value: 'process',      label: 'Process' },
+  { value: 'about',        label: 'About' },
+  { value: 'testimonials', label: 'Testimonials' },
+  { value: 'contact',      label: 'Contact form' },
+  { value: '__custom',     label: 'Custom link (URL / phone / email)…' },
+];
+const BTN_TARGET_IDS = BTN_TARGETS.map(t => t.value);
+
+function ButtonConfigCard({ title, where, cfg, onChange, defaults, hasTarget = true, hasVisible = true }) {
+  const c = cfg || {};
+  const target = c.target ?? defaults.target ?? 'contact';
+  const isCustom = hasTarget && !!target && !BTN_TARGET_IDS.includes(target);
+  const u = (k, v) => onChange({ ...defaults, ...c, [k]: v });
+  return (
+    <Card title={title} defaultCollapsed>
+      <p style={{ color: 'var(--fg-dim)', fontSize: '.8rem', margin: '0 0 .9rem' }}>{where}</p>
+      <TextField label="Button text" value={c.label ?? defaults.label} onChange={v => u('label', v)} />
+      {hasTarget && (
+        <>
+          <SelectField
+            label="Where it goes"
+            value={isCustom ? '__custom' : target}
+            onChange={v => u('target', v === '__custom' ? 'https://' : v)}
+            options={BTN_TARGETS}
+            help="Pick a section of the site — or choose Custom to send people anywhere (a shop page, phone number, email)." />
+          {isCustom && (
+            <TextField label="Custom link" value={target} onChange={v => u('target', v)}
+              help="Full link: https://… for a web page, tel:6124708332 for a call, mailto:you@example.com for email." />
+          )}
+        </>
+      )}
+      <SelectField label="Style" value={c.style ?? defaults.style} onChange={v => u('style', v)} options={[
+        { value: 'primary',   label: 'Primary (solid amber — main action)' },
+        { value: 'secondary', label: 'Secondary (outline — quieter)' },
+      ]} />
+      {hasVisible && (
+        <CheckboxField label="Show this button on the site"
+          value={c.visible !== false} onChange={v => u('visible', v)}
+          help="Untick to hide the button without losing its settings." />
+      )}
+    </Card>
+  );
+}
+
+function ButtonsEditor({ data, set }) {
+  const b = data.buttons || {};
+  const hero = data.hero || {};
+  const uB = (key, v) => set(deepSet(data, ['buttons', key], v));
+  const uHero = (key, v) => set(deepSet(data, ['hero', key], v));
+  return (
+    <>
+      <div className="section-h">
+        <h1>Buttons</h1>
+        <p>Every clickable button on the site. Change the wording ("Inquire" → "Add to Cart" → "Buy Now"), where it sends people, the look — or hide it entirely.</p>
+      </div>
+
+      <ButtonConfigCard title="Header — main button"
+        where="Top-right corner of every page, and in the mobile menu."
+        cfg={b.headerCta} onChange={v => uB('headerCta', v)}
+        defaults={{ label: 'Get a Quote', target: 'contact', style: 'primary', visible: true }} />
+
+      <ButtonConfigCard title="Hero — primary button"
+        where="The big button under the headline at the top of the site."
+        cfg={hero.ctaPrimary} onChange={v => uHero('ctaPrimary', v)}
+        defaults={{ label: 'Start Your Piece', target: 'contact', style: 'primary', visible: true }} />
+
+      <ButtonConfigCard title="Hero — secondary button"
+        where="The second button under the headline."
+        cfg={hero.ctaSecondary} onChange={v => uHero('ctaSecondary', v)}
+        defaults={{ label: 'See The Work', target: 'gallery', style: 'secondary', visible: true }} />
+
+      <ButtonConfigCard title="Featured product — main button"
+        where="On the big featured card at the top of the catalog (The Lit Stone)."
+        cfg={b.featuredQuote} onChange={v => uB('featuredQuote', v)}
+        defaults={{ label: 'Get a Quote', target: 'contact', style: 'primary', visible: true }} />
+
+      <ButtonConfigCard title="Featured product — details button"
+        where="Next to the main button — always opens the product detail window."
+        cfg={b.featuredDetails} onChange={v => uB('featuredDetails', v)}
+        defaults={{ label: 'View Details', style: 'secondary', visible: true }}
+        hasTarget={false} />
+
+      <ButtonConfigCard title="Product cards — small button"
+        where="The small button on every product card in the grid."
+        cfg={b.gridQuote} onChange={v => uB('gridQuote', v)}
+        defaults={{ label: 'Quote', target: 'contact', style: 'secondary', visible: true }} />
+
+      <ButtonConfigCard title="Product detail window — main button"
+        where="Inside the pop-up when someone opens a product."
+        cfg={b.modalQuote} onChange={v => uB('modalQuote', v)}
+        defaults={{ label: 'Get a Quote', target: 'contact', style: 'primary', visible: true }} />
+
+      <ButtonConfigCard title="Product detail window — close button"
+        where="Closes the pop-up. Always shown so people can't get stuck."
+        cfg={b.modalClose} onChange={v => uB('modalClose', v)}
+        defaults={{ label: 'Close', style: 'secondary' }}
+        hasTarget={false} hasVisible={false} />
+
+      <ButtonConfigCard title="Contact form — send button"
+        where="Submits the contact form. Always shown."
+        cfg={b.contactSubmit} onChange={v => uB('contactSubmit', v)}
+        defaults={{ label: 'Send Request', style: 'primary' }}
+        hasTarget={false} hasVisible={false} />
     </>
   );
 }
@@ -1019,6 +1129,7 @@ function AdminsEditor({ data, set, session }) {
 // ══ MAIN APP ══════════════════════════════════════════════════════════
 const SECTIONS = [
   { id: 'hero',     label: 'Hero',         group: 'Page',   Comp: HeroEditor },
+  { id: 'buttons',  label: 'Buttons',      group: 'Page',   Comp: ButtonsEditor },
   { id: 'sale',     label: 'Sale',         group: 'Page',   Comp: SaleEditor },
   { id: 'gallery',  label: 'Gallery',      group: 'Page',   Comp: GalleryEditor },
   { id: 'catalog',  label: 'Catalog',      group: 'Page',   Comp: CatalogEditor },
