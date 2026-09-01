@@ -1,0 +1,467 @@
+# ══════════════════════════════════════════════════════════════════════
+#  Twin City Concrete Yard & Garden — CMS configuration
+#
+#  Edits made here commit straight to content/content.json in the repo,
+#  which triggers a Vercel rebuild. Live in about a minute.
+#
+#  IMPORTANT: every key present in content.json must be declared below.
+#  Sveltia drops undeclared keys on save — an omitted field is deleted
+#  data, not preserved data. If you add something to content.json by
+#  hand, add it here too.
+# ══════════════════════════════════════════════════════════════════════
+
+backend:
+  name: github
+  repo: Domnoval/tccyg-site
+  branch: main
+  # base_url: <cloudflare worker url>   # add later for one-click GitHub login;
+  #                                     # until then the login screen offers token sign-in
+  commit_messages:
+    update: 'Site edit: {{collection}} ({{author-login}})'
+
+media_folder: assets/cms
+public_folder: assets/cms
+
+publish_mode: simple
+
+collections:
+  - name: site
+    label: Twin City Concrete
+    files:
+      - name: content
+        label: Website Content
+        file: content/content.json
+        format: json
+        icon: home
+        description: Everything on the website. Changes go live about a minute after you save.
+        fields:
+          - { name: schemaVersion, widget: hidden, default: 1 }
+
+          # ── SALE BANNER ──────────────────────────────────────────
+          - name: sale
+            label: Sale Banner
+            widget: object
+            collapsed: false
+            fields:
+              - name: enabled
+                label: Show the sale banner
+                widget: boolean
+                default: false
+                hint: Turn this OFF when a sale ends. It does not expire on its own.
+              - { name: bannerText, label: Banner headline, widget: string }
+              - { name: bannerSub, label: Banner small print, widget: string }
+              - name: salePercent
+                label: Discount percent
+                widget: number
+                value_type: int
+                min: 0
+                max: 90
+                hint: This actually reduces the prices shown on the site.
+              - name: bumpPercent
+                label: Crossed-out price bump
+                widget: number
+                value_type: int
+                min: 0
+                max: 90
+
+          # ── PRODUCTS ─────────────────────────────────────────────
+          - name: catalog
+            label: Products
+            label_singular: Product
+            widget: list
+            collapsed: true
+            summary: '{{fields.name}}  —  {{fields.price}}'
+            fields:
+              - { name: name, label: Product name, widget: string }
+              - name: price
+                label: Price
+                widget: string
+                hint: 'Type it how it should read: $140, From $400, Contact for price'
+              - { name: tagline, label: Short tagline, widget: string, required: false }
+              - { name: desc, label: Full description, widget: text, required: false }
+              - name: category
+                label: Category
+                widget: select
+                options: [Lit Stone, Planter Urn, Yard Statue]
+              - { name: img, label: Main photo, widget: image, required: false }
+              - name: imgStaged
+                label: Second photo — in the yard
+                widget: image
+                required: false
+                hint: Optional. A staged or installed shot to pair with the main photo.
+              - name: specs
+                label: Spec table
+                widget: list
+                required: false
+                collapsed: true
+                summary: '{{fields.k}}: {{fields.v}}'
+                fields:
+                  - { name: k, label: Label, widget: string }
+                  - { name: v, label: Value, widget: string }
+              - name: sizes
+                label: Size options
+                widget: list
+                required: false
+                collapsed: true
+                summary: '{{fields.label}} — {{fields.price}}'
+                hint: Only used by The Lit Stone. Leave empty for everything else.
+                fields:
+                  - { name: label, label: Size name, widget: string }
+                  - { name: dims, label: Dimensions, widget: string }
+                  - { name: price, label: Price, widget: string }
+              - name: featured
+                label: Feature this at the top
+                widget: boolean
+                required: false
+                default: false
+              - { name: id, label: Internal ID — leave alone, widget: string }
+              - { name: tintGray, label: Gray-tint the photo, widget: boolean, required: false }
+              - { name: studioShot, label: Studio shot styling, widget: boolean, required: false }
+
+          # ── GALLERY ──────────────────────────────────────────────
+          - name: gallery
+            label: Recent Work
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: Small label above title, widget: string }
+              - { name: title, label: Section title, widget: string }
+              - { name: subtitle, label: Intro paragraph, widget: text }
+              - name: items
+                label: Projects
+                label_singular: Project
+                widget: list
+                collapsed: true
+                summary: '{{fields.title}} — {{fields.loc}}'
+                fields:
+                  - { name: title, label: Project name, widget: string, required: false }
+                  - { name: tag, label: Tag, widget: string, required: false }
+                  - { name: loc, label: Location, widget: string, required: false }
+                  - { name: img, label: Photo, widget: image, required: false }
+                  - { name: desc, label: Description, widget: text, required: false }
+                  - name: big
+                    label: Show large
+                    widget: boolean
+                    required: false
+                    hint: Makes this the hero tile of the gallery grid.
+                  - { name: placeholder, label: Placeholder tile, widget: boolean, required: false }
+                  - { name: comingSoon, label: 'Show "coming soon"', widget: boolean, required: false }
+                  - { name: id, label: Internal ID — leave alone, widget: string, required: false }
+
+          # ── HERO ─────────────────────────────────────────────────
+          - name: hero
+            label: Top of the Page
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: Small line above headline, widget: string }
+              - name: headlinePreset
+                label: Which headline to use
+                widget: select
+                options: [address, raw, light]
+              - name: headlinePresets
+                label: Headline options
+                widget: object
+                collapsed: true
+                fields:
+                  - name: address
+                    label: 'Option 1 — "address"'
+                    widget: object
+                    fields:
+                      - { name: a, label: First line, widget: string }
+                      - { name: b, label: Second line (glowing), widget: string }
+                  - name: raw
+                    label: 'Option 2 — "raw"'
+                    widget: object
+                    fields:
+                      - { name: a, label: First line, widget: string }
+                      - { name: b, label: Second line (glowing), widget: string }
+                  - name: light
+                    label: 'Option 3 — "light"'
+                    widget: object
+                    fields:
+                      - { name: a, label: First line, widget: string }
+                      - { name: b, label: Second line (glowing), widget: string }
+              - { name: subtitle, label: Paragraph under the headline, widget: text }
+              - name: ctaPrimary
+                label: Main button
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: label, label: Button text, widget: string }
+                  - name: target
+                    label: Goes to
+                    widget: select
+                    options: [contact, gallery, products, process, about]
+                  - { name: style, label: Style, widget: select, options: [primary, secondary], required: false }
+                  - { name: visible, label: Show this button, widget: boolean, required: false, default: true }
+              - name: ctaSecondary
+                label: Second button
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: label, label: Button text, widget: string }
+                  - name: target
+                    label: Goes to
+                    widget: select
+                    options: [contact, gallery, products, process, about]
+                  - { name: style, label: Style, widget: select, options: [primary, secondary], required: false }
+                  - { name: visible, label: Show this button, widget: boolean, required: false, default: true }
+              - name: kickers
+                label: The three stats
+                widget: list
+                collapsed: true
+                summary: '{{fields.num}} {{fields.lbl}}'
+                fields:
+                  - { name: num, label: Number, widget: string }
+                  - { name: lbl, label: Caption, widget: string }
+              - name: beamSize
+                label: Flashlight size
+                widget: number
+                value_type: int
+                min: 150
+                max: 900
+                hint: How wide the light beam is when someone moves their mouse.
+              - name: beamWarmth
+                label: Light colour
+                widget: select
+                options: [amber, warm, cool]
+              - { name: hintText, label: Hint text at the bottom, widget: string }
+
+          # ── ABOUT ────────────────────────────────────────────────
+          - name: about
+            label: About
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: Small label, widget: string }
+              - { name: title, label: Section title, widget: string }
+              - name: paragraphs
+                label: Paragraphs
+                widget: list
+                field: { name: paragraph, label: Paragraph, widget: text }
+              - { name: img, label: Photo, widget: image, required: false }
+              - { name: sigName, label: Signed — name, widget: string }
+              - { name: sigRole, label: Signed — title, widget: string }
+
+          # ── PROCESS ──────────────────────────────────────────────
+          - name: process
+            label: How It Works
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: Small label, widget: string }
+              - { name: titleA, label: 'Title, first part', widget: string }
+              - { name: titleB, label: 'Title, second part', widget: string }
+              - { name: subtitle, label: Intro paragraph, widget: text }
+              - name: steps
+                label: Steps
+                widget: list
+                collapsed: true
+                summary: '{{fields.n}} — {{fields.t}}'
+                fields:
+                  - { name: n, label: Step number, widget: string }
+                  - { name: t, label: Step name, widget: string }
+                  - { name: d, label: What happens, widget: text }
+              - { name: noteLabel, label: Note heading, widget: string }
+              - { name: noteBody, label: Note text, widget: text }
+
+          # ── CONTACT ──────────────────────────────────────────────
+          - name: contact
+            label: Contact
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: Small label, widget: string }
+              - { name: title, label: Section title, widget: string }
+              - { name: subtitle, label: Intro paragraph, widget: text }
+              - { name: phone, label: Phone number, widget: string }
+              - name: phoneHref
+                label: Phone tap-to-call link
+                widget: string
+                hint: 'Must stay in this format: tel:6124708332'
+              - { name: hours, label: Hours, widget: string }
+              - { name: asideTitle, label: Sidebar heading, widget: string }
+              - { name: asideBody, label: Sidebar text, widget: text }
+              - { name: seasonLabel, label: Season label, widget: string }
+              - name: seasonValue
+                label: Season status
+                widget: string
+                hint: 'e.g. Booking 2026 · 4 slots left. Update this as slots fill.'
+              - name: formspreeId
+                label: Formspree form ID — leave alone
+                widget: string
+                hint: This is what makes the contact form deliver. Changing it breaks it.
+              - { name: errorPhone, label: Fallback phone if form fails, widget: string }
+
+          # ── HARD NUMBERS ─────────────────────────────────────────
+          - name: hardNumbers
+            label: The Hard Numbers
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: Small label, widget: string }
+              - { name: titleA, label: 'Title, first part', widget: string }
+              - { name: titleB, label: 'Title, highlighted part', widget: string }
+              - { name: titleSuffix, label: 'Title, ending', widget: string }
+              - { name: subtitle, label: Intro paragraph, widget: text }
+              - name: items
+                label: Cards
+                widget: list
+                collapsed: true
+                typeKey: kind
+                types:
+                  - name: stat
+                    label: Statistic
+                    widget: object
+                    summary: '{{fields.figure}}{{fields.figurePct}} — {{fields.cite}}'
+                    fields:
+                      - { name: figure, label: Big number, widget: string }
+                      - { name: figurePct, label: Symbol after it, widget: string, required: false }
+                      - name: body
+                        label: Supporting text
+                        widget: text
+                        hint: 'Allows <strong>bold</strong> HTML tags.'
+                      - { name: cite, label: Source, widget: string }
+                  - name: quote
+                    label: Quote
+                    widget: object
+                    summary: '{{fields.citeStrong}}'
+                    fields:
+                      - { name: quote, label: The quote, widget: text }
+                      - { name: citeStrong, label: Who said it, widget: string }
+                      - { name: citeStrongSep, label: Their organisation, widget: string, required: false }
+                      - { name: citeSub, label: Context line, widget: string, required: false }
+              - { name: tagline, label: Closing tagline, widget: string }
+              - { name: taglineSub, label: Closing sub-line, widget: string }
+
+          # ── FOOTER ───────────────────────────────────────────────
+          - name: footer
+            label: Footer
+            widget: object
+            collapsed: true
+            fields:
+              - { name: sloganA, label: 'Slogan, part 1', widget: string }
+              - { name: sloganMid, label: 'Slogan, part 2', widget: string }
+              - { name: sloganB, label: 'Slogan, part 3', widget: string }
+              - { name: sloganTag, label: Line under the slogan, widget: string }
+              - { name: copyright, label: Copyright line, widget: string }
+              - name: links
+                label: Footer links
+                widget: list
+                collapsed: true
+                summary: '{{fields.label}}'
+                fields:
+                  - name: id
+                    label: Section
+                    widget: select
+                    options: [gallery, products, process, about, contact]
+                  - { name: label, label: Link text, widget: string }
+
+          # ── NAVIGATION ───────────────────────────────────────────
+          - name: nav
+            label: Menu
+            widget: object
+            collapsed: true
+            fields:
+              - name: links
+                label: Menu items
+                widget: list
+                collapsed: true
+                summary: '{{fields.label}}'
+                fields:
+                  - name: id
+                    label: Section
+                    widget: select
+                    options: [gallery, products, process, about, contact]
+                  - { name: label, label: Menu text, widget: string }
+              - { name: ctaLabel, label: Menu button text, widget: string }
+
+          # ── BUTTONS ──────────────────────────────────────────────
+          - name: buttons
+            label: Button Labels
+            widget: object
+            collapsed: true
+            fields:
+              - name: headerCta
+                label: Header button
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: label, label: Text, widget: string }
+                  - { name: target, label: Goes to, widget: string, required: false }
+                  - { name: style, label: Style, widget: select, options: [primary, secondary], required: false }
+                  - { name: visible, label: Visible, widget: boolean, required: false, default: true }
+              - name: featuredQuote
+                label: Featured product — quote button
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: label, label: Text, widget: string }
+                  - { name: target, label: Goes to, widget: string, required: false }
+                  - { name: style, label: Style, widget: select, options: [primary, secondary], required: false }
+                  - { name: visible, label: Visible, widget: boolean, required: false, default: true }
+              - name: featuredDetails
+                label: Featured product — details button
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: label, label: Text, widget: string }
+                  - { name: target, label: Goes to, widget: string, required: false }
+                  - { name: style, label: Style, widget: select, options: [primary, secondary], required: false }
+                  - { name: visible, label: Visible, widget: boolean, required: false, default: true }
+              - name: gridQuote
+                label: Product grid — quote button
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: label, label: Text, widget: string }
+                  - { name: target, label: Goes to, widget: string, required: false }
+                  - { name: style, label: Style, widget: select, options: [primary, secondary], required: false }
+                  - { name: visible, label: Visible, widget: boolean, required: false, default: true }
+              - name: modalQuote
+                label: Popup — quote button
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: label, label: Text, widget: string }
+                  - { name: target, label: Goes to, widget: string, required: false }
+                  - { name: style, label: Style, widget: select, options: [primary, secondary], required: false }
+                  - { name: visible, label: Visible, widget: boolean, required: false, default: true }
+              - name: modalClose
+                label: Popup — close button
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: label, label: Text, widget: string }
+                  - { name: style, label: Style, widget: select, options: [primary, secondary], required: false }
+                  - { name: visible, label: Visible, widget: boolean, required: false, default: true }
+              - name: contactSubmit
+                label: Contact form — send button
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: label, label: Text, widget: string }
+                  - { name: style, label: Style, widget: select, options: [primary, secondary], required: false }
+
+          # ── BRAND & SEO ──────────────────────────────────────────
+          - name: brand
+            label: Logo & Wordmark
+            widget: object
+            collapsed: true
+            fields:
+              - { name: wordmarkTop, label: 'Wordmark, top line', widget: string }
+              - { name: wordmarkBot, label: 'Wordmark, bottom line', widget: string }
+              - { name: logoSrc, label: Logo image, widget: image, required: false }
+
+          - name: meta
+            label: Search & Social
+            widget: object
+            collapsed: true
+            fields:
+              - { name: siteName, label: Business name, widget: string }
+              - { name: tagline, label: Tagline, widget: string }
+              - name: ogDescription
+                label: Description for Google & link previews
+                widget: text
+                hint: Keep it under about 160 characters.
