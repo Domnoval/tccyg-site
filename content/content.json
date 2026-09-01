@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sale": {
-    "enabled": false,
+    "enabled": true,
     "bannerText": "Statefair Sale",
     "bannerSub": "50% off Artificial Rock",
     "salePercent": 50,
