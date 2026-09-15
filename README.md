@@ -1,56 +1,36 @@
-# TCCYG — Twin Cities Concrete Yard & Garden
+# Twin City Concrete Yard & Garden
 
-One-page site for TCCYG. Hand-cast concrete monoliths, LED fissures, living gardens.
+The live business website is https://twincityconcreteyardandgarden.com/ (also https://tccyg.com/).
 
-## What's here
+## Edit the website
 
-Static files, no build step. Open `index.html` in a browser to run locally.
+Open https://twincityconcreteyardandgarden.com/admin and choose **Sign In with GitHub**. Kurt's account is `kurtkujawa65-cyber` and must have write access to `Domnoval/tccyg-site`.
 
-```
-index.html            # entry — sets up the React tree via CDN + inline JSX
-hero-styles.css       # hero / above-the-fold styles, lights-on animation, embers
-site-styles.css       # Work, Process, Materials, Commission, Footer
-tokens.css            # design tokens — color, type, spacing, motion
-Wordmark.jsx          # TCCYG mark + wordmark SVG components
-HeroScene.jsx         # animated hero (parallax, cursor-tracked lantern, rock ignition)
-Sections.jsx          # Work grid, Process timeline, Materials, Commission form, Footer
-assets/               # photos and logo PNGs
-```
+Open **Twin City Concrete → Website Content**, edit the required fields, and save/publish. Changes are committed to `content/content.json` on `main`; Vercel then publishes them, normally within about a minute. Confirm the result on the public website.
 
-Dependencies are pulled from a CDN (`react@18.3.1`, `@babel/standalone`) so nothing needs to be installed.
+The old `/admin.html` bookmark redirects to `/admin`. Email magic-link instructions describe the retired Supabase editor and no longer apply. Access-token sign-in remains a recovery option.
 
-## Local dev
+## Source of truth
 
-Any static server works. Two quick options:
+- `content/content.json`: current website copy, contact details, sale settings, products, and photo references.
+- `admin/config.yml`: Sveltia CMS editor fields. Keep this schema aligned with the content file so edits preserve all fields.
+- `assets/cms/`: photos uploaded through the editor.
+- `index.html` and the referenced local scripts/styles: public storefront.
+- `api/auth.js`, `api/callback.js`, `lib/cms-auth.js`: GitHub sign-in on Vercel.
+- `vendor/sveltia-cms-auth/`: pinned upstream authenticator and its license/provenance.
 
-```sh
-python3 -m http.server 8000
-# or
-npx serve .
-```
+Supabase is not required by the current storefront or editor. Earlier handoff folders and database instructions are historical.
 
-Then open http://localhost:8000.
+## Hosting
 
-Edit any `.jsx`, `.css`, or `index.html` — hard refresh to see changes. The Babel standalone script compiles JSX in the browser.
+As verified on September 15, 2026, the live site is the **kurts-website-final** Vercel project in **quantum-tonic**, linked to this repository's `main` branch. That team has an active Pro plan. Both public domains still resolve to Vercel; a Cloudflare migration has not been verified.
 
-## Hero interaction
+Vercel deploys pushes to `main`. The legacy GitHub Pages workflow is manual-only and is not the production publishing path. It cannot run the OAuth API functions.
 
-Move your cursor over the "1371" carved into the rock — the amber LEDs ignite (ignition flicker → steady burn), the cursor-tracked lantern fades in, embers brighten, the status dot shifts from sage to amber. Leave the zone and it all settles back to dusk. Logic lives in `HeroScene.jsx` (`onMove` handler).
+The two private production environment variables are `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`. Keep the secret out of Git and client-side code. Registration, ownership, and verification details are in [docs/ADMIN-SETUP.md](docs/ADMIN-SETUP.md).
 
-## Copy, photos, and content
+## Local checks
 
-- **Hero copy** — edit the `DEFAULTS` object in `index.html`.
-- **Hero photo** — change `DEFAULTS.photo`. Available keys are defined in `HeroScene.jsx` (`PHOTOS` map): `rock-1371`, `hero-bg`, `slab`, `landscape`, `river`, `industrial`, `rock-1371-orig`. Add new options by dropping an image into `assets/` and adding a line to `PHOTOS`.
-- **Work grid** — `WORK_ITEMS` in `Sections.jsx`. Currently 7 placeholder cards with `span-4/6/8` grid sizes; drop a `photoUrl` field onto an item to swap placeholders for real images (will need a small CSS tweak for `background-image`).
-- **Process steps** — `PROCESS_STEPS` in `Sections.jsx`.
-- **Materials** — `MATERIALS` in `Sections.jsx`.
-- **Studio details / contact** — inline in `SectionCommission` (`Sections.jsx`).
+Run `npm test` for sign-in security and callback tests. A static HTTP server can preview the storefront; use Vercel development/preview deployment to exercise the API functions. Before release, verify the old bookmark redirect, GitHub sign-in, and a complete editor save and public-site update.
 
-## Deployment
-
-GitHub Pages workflow at `.github/workflows/pages.yml` deploys `main` on every push. No build, no Node. After the first deploy, enable Pages in repo settings under **Settings → Pages → Source: GitHub Actions** (one-time, has to be clicked in the UI).
-
-## Known production notes
-
-- The site ships with unminified CSS and CDN-loaded React — fine for a marketing page, but if traffic matters, pre-compile the JSX with a real bundler (Vite) and host static chunks.
-- `Tweaks.jsx` (the in-design editor panel) is intentionally not loaded here — it only runs inside Claude Design's iframe.
+Sveltia CMS is pinned to `0.212.2`. Test version upgrades deliberately.

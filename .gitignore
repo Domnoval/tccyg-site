@@ -1,5 +1,7 @@
 # Vercel CLI link / local deploy state
 .vercel
+node_modules/
+.env*
 
 # Playwright MCP test artifacts (screenshots, console/network logs)
 .playwright-mcp/

@@ -1,8 +1,7 @@
-name: Deploy to GitHub Pages
+name: Legacy GitHub Pages (manual only)
 
 on:
-  push:
-    branches: [main]
+  # Vercel publishes main to the business domains. Pages is a historical preview.
   workflow_dispatch:
 
 permissions:
