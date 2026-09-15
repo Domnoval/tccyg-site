@@ -14,8 +14,8 @@ backend:
   name: github
   repo: Domnoval/tccyg-site
   branch: main
-  # base_url: <cloudflare worker url>   # add later for one-click GitHub login;
-  #                                     # until then the login screen offers token sign-in
+  base_url: https://twincityconcreteyardandgarden.com/api
+  auth_scope: public_repo
   commit_messages:
     update: 'Site edit: {{collection}} ({{author-login}})'
 
@@ -33,7 +33,6 @@ collections:
         file: content/content.json
         format: json
         icon: home
-        description: Everything on the website. Changes go live about a minute after you save.
         fields:
           - { name: schemaVersion, widget: hidden, default: 1 }
 
