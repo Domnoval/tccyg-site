@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "sale": {
     "enabled": true,
-    "bannerText": "State Fair Sale",
+    "bannerText": "Statefair Sale",
     "bannerSub": "50% off Artificial Rock",
     "salePercent": 50,
     "bumpPercent": 30
