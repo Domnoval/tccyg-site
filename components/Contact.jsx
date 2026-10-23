@@ -85,6 +85,18 @@ function Contact() {
       }
       if (res.ok) {
         setStatus('sent');
+        // Signal accepted inquiries only. Never include customer-entered text.
+        // Tracking failures must not turn a delivered inquiry into a form error.
+        try {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'quote_request_success',
+            form_id: 'quote_request',
+            product_type: form.type,
+          });
+        } catch (trackingError) {
+          // The inquiry succeeded even when analytics is unavailable.
+        }
         setForm({ name: '', email: '', phone: '', address: '', type: 'Lit Stone', stoneMessage: '', message: '' });
         clearPhoto();
       } else {
