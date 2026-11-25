@@ -27,6 +27,7 @@ const c = JSON.parse(await readFile(path.join(ROOT, 'content/content.json'), 'ut
 // ── helpers ───────────────────────────────────────────────────────────────
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const clean = (s) => String(s ?? '').replace(/\s+—\s+(\S)/g, (_, ch) => '. ' + ch.toUpperCase()).replace(/\s+/g, ' ').trim();
+const lowerFirst = (s) => String(s).charAt(0).toLowerCase() + String(s).slice(1);
 const sentence = (s) => { const t = clean(s); return t && !/[.!?]$/.test(t) ? t + '.' : t; };
 
 const ROUTES = {
@@ -254,8 +255,8 @@ function pageLit() {
   const start = Math.min(1, sizes.length - 1);
   const s0 = sizes[start];
   const faqs = [
-    ['Do I need an electrician?', `No. Kurt wires the stone to a low-voltage transformer himself, and a photocell is included, so it comes on at dusk and off at dawn without you touching it.${spec.Lighting ? ` Lighting is ${spec.Lighting.toLowerCase()}.` : ''}`],
-    ['Will it survive a Minnesota winter?', `That is what it is built for. ${spec.Material ? spec.Material + ', cured' : 'The concrete cures'} a full 30 days before it is painted, stained and sealed.${spec.Lettering ? ` Lettering is ${spec.Lettering.toLowerCase()}.` : ''}`],
+    ['Do I need an electrician?', `No. Kurt wires the stone to a low-voltage transformer himself, and a photocell is included, so it comes on at dusk and off at dawn without you touching it.${spec.Lighting ? ` Lighting is ${lowerFirst(spec.Lighting)}.` : ''}`],
+    ['Will it survive a Minnesota winter?', `That is what it is built for. ${spec.Material ? spec.Material + ', cured' : 'The concrete cures'} a full 30 days before it is painted, stained and sealed.${spec.Lettering ? ` Lettering is ${lowerFirst(spec.Lettering)}.` : ''}`],
     ['How long until it is in my yard?', clean(c.process.subtitle).replace(/; /g, '. ').replace(/\. y/, '. Y')],
     ['Do you come out to me?', 'Yes. ' + clean(c.contact.asideBody)],
     ['How does payment work?', 'The quote is free. ' + clean(c.process.noteBody).replace(/^50% down to reserve/, '50% down reserves')],
