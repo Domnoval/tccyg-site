@@ -568,12 +568,8 @@
     },
     "kickers": [
       {
-        "num": "6yr",
+        "num": "3yr",
         "lbl": "In Business"
-      },
-      {
-        "num": "50+",
-        "lbl": "Pieces Cast"
       },
       {
         "num": "100%",
@@ -588,9 +584,8 @@
     "eyebrow": "About",
     "title": "Concrete, Cast By Hand.",
     "paragraphs": [
-      "Hello, neighbor — and welcome to our little corner of the Twin Cities.\nWe are Twin City Concrete Yard & Garden, a Minneapolis-area business built on a simple idea: your outdoor space deserves more than mass-produced plastic and fading resin. We handcraft and carry durable, character-rich concrete pieces — planters, urns, garden statues, yard art, and seasonal accents — designed to grow more beautiful with every Minnesota season that passes.\nWhether you’re sprucing up a front entry, anchoring a backyard garden, or searching for a gift that will last a lifetime, we’re here to help you find exactly the right piece. Come visit us, browse our yard, and let’s bring your outdoor space to life.\n\n\n\nWhat We Offer\nOur yard is stocked with a wide and rotating assortment of concrete pieces for every style, space, and budget:\n\n🪴\tPlanters & Urns\nFrom petite windowsill pots to grand urn pairs perfect for a front porch or garden gate — classic, cottage, and contemporary styles for every taste.\n🦋\tGarden Statues\nAnimals, angels, birds, wildlife, and whimsical figures. Each statue is cast with fine detail and finished to stand up to our harsh winters and warm summers.\n\n🌸\tYard Art & Accents\nBirdbaths, stepping stones, garden benches, and decorative borders — the finishing touches that tie your outdoor space together with style and intention.\n\n🎁\tSeasonal & Gift Items\nRotating seasonal selections and gift-ready pieces perfect for housewarmings, garden lovers, and anyone who appreciates something made to last.\n\n\n\nOur Vision\nWe started Twin City Concrete Yard & Garden with one goal in mind: to give Minneapolis-area homeowners access to the kind of beautiful, lasting outdoor pieces that used to require a specialty trip downtown or an expensive custom order.\nWe believe your yard is an extension of your home — a place where family gathers, neighbors pause, and seasons are celebrated. The right planter, the right statue, the right birdbath doesn’t just decorate a space; it anchors it. It gives it a soul.\nThat’s why every piece we carry is chosen for its quality, its character, and its ability to age gracefully. Concrete, when it’s done right, doesn’t fade or crack in the cold — it develops a beautiful patina, a story worth telling.\nOur vision is simple: to be the place you think of first when you want to make your outdoor space feel like yours. We’re a family business, and we treat every customer like a neighbor — because in this city, you just might be.",
-      "“Come see us — your garden is waiting for its centerpiece.”\nWith warmth,\nThe Family at Twin City Concrete Yard & Garden\nMinneapolis, Minnesota",
-      "BE SEEN,BE FOUND, BE LIT"
+      "Hello, neighbor. Twin City Concrete Yard & Garden is a local, privately owned Minneapolis business built on a simple idea: your outdoor space deserves more than mass-produced plastic and fading resin.",
+      "Every piece is cast here and finished to stand up to our winters. Concrete done right doesn't fade. It picks up a patina and a story worth telling."
     ],
     "img": "assets/cms/1778842561147-0vpgju.jpg",
     "sigName": "Kurt Kujawa",
@@ -632,7 +627,7 @@
     "subtitle": "Fill in the basics below or call the shop directly. Kurt answers his own phone — leave a message if he's out in the yard.",
     "phone": "612-470-8332",
     "phoneHref": "tel:6124708332",
-    "hours": "Sat 9–2 · By Appointment",
+    "hours": "Open daily 9–5",
     "asideTitle": "The Shop",
     "asideBody": "We serve the seven-county Twin Cities metro: Minneapolis, St. Paul, Plymouth, Maple Grove, Eden Prairie, Woodbury, and everywhere in between.",
     "seasonLabel": "Season",

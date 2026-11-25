@@ -10,12 +10,18 @@ Open **Twin City Concrete → Website Content**, edit the required fields, and s
 
 The old `/admin.html` bookmark redirects to `/admin`. Email magic-link instructions describe the retired Supabase editor and no longer apply. Access-token sign-in remains a recovery option.
 
+## How the pages are built
+
+The public site is six pages: Home, Lit Stones, Planters & Statuary, About, Start Your Project and Thank You. `build.mjs` writes them into `dist/` from `content/content.json`, and Vercel runs it on every commit (`npm run build` locally). Page layout is in `build.mjs`, styles in `src/site.css`, behavior in `src/site.js`. Photos are resized to WebP during the build, so uploads from the editor need no preparation.
+
+Wording that has no field in the editor yet (headlines, the Lit Stone questions) lives in `build.mjs`. The sale banner from the old one-page site is not carried over. The old one-page files (`index.html`, `components/`, `site.css`) are no longer served and can be removed once the new pages are approved.
+
 ## Source of truth
 
 - `content/content.json`: current website copy, contact details, sale settings, products, and photo references.
 - `admin/config.yml`: Sveltia CMS editor fields. Keep this schema aligned with the content file so edits preserve all fields.
 - `assets/cms/`: photos uploaded through the editor.
-- `index.html` and the referenced local scripts/styles: public storefront.
+- `build.mjs`, `src/site.css`, `src/site.js`: public storefront (see above).
 - `api/auth.js`, `api/callback.js`, `lib/cms-auth.js`: GitHub sign-in on Vercel.
 - `vendor/sveltia-cms-auth/`: pinned upstream authenticator and its license/provenance.
 

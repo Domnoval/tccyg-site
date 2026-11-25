@@ -11,3 +11,6 @@ node_modules/
 assets/foodog blank1.png
 assets/pedestal - 25-04-2026 23-05-39.png
 assets/pedestal -staged.png
+
+# Built site (Vercel runs build.mjs on every deploy)
+dist/
