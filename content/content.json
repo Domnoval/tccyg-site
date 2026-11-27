@@ -70,7 +70,7 @@
       "tagline": "Flagship planter — tall, commanding, built for entryways.",
       "desc": "Make a statement before anyone even reaches your front door. The Minneapolis Grand Urn is our flagship planter — a tall, commanding piece handcrafted from cement that anchors entryways, driveways, and garden beds with timeless elegance. Built to handle the toughest Midwestern winters and the heat of a Southern summer, this urn is as durable as it is beautiful. Whether you fill it with seasonal blooms, ornamental grasses, or year-round evergreens, the Grand Urn turns any yard into a destination.",
       "category": "Planter Urn",
-      "img": "assets/cms/1779039419601-czx7z1.jpg",
+      "img": "assets/plates/grand-urn.jpg",
       "imgStaged": "assets/cms/1779423037946-0mols2.jpg",
       "specs": [
         {
@@ -114,7 +114,7 @@
       "tagline": "Wide, bold — ideal for flanking front steps or a driveway entrance.",
       "desc": "Wide, bold, and built to impress — the Twin Cities Pedestal Urn brings serious curb appeal to any outdoor space. With its generous planting depth and broad rim, this urn is ideal for large floral arrangements, dramatic centerpiece plantings, or ornamental topiaries. Place a pair flanking your front steps or driveway entrance for a look that's nothing short of grand. Every Pedestal Urn is handcrafted to order and built to last through every season.",
       "category": "Planter Urn",
-      "img": "assets/cms/1779039458037-cay55a.jpg",
+      "img": "assets/plates/pedestal-urn.jpg",
       "imgStaged": "assets/cms/1779422955632-lzi9fi.jpg",
       "specs": [
         {
@@ -158,7 +158,7 @@
       "tagline": "Statement piece with sweeping presence — anchors any outdoor space.",
       "desc": "The Boulevard Urn is where handcrafted artistry meets sheer presence. With a sweeping 23-inch outer diameter, a generous 17-inch planting basin, and standing 17 inches tall, this is a planter designed to anchor a space — not simply occupy it. At approximately 170 pounds of solid, hand-poured concrete, The Boulevard Urn isn't going anywhere. Neither is the impression it makes.\nInspired by the grand, tree-lined boulevards of America's most iconic neighborhoods, this urn brings that same sense of timeless elegance to your front entry, driveway, patio, or garden. Whether flanking a walkway in pairs or standing alone as a centerpiece, The Boulevard Urn transforms any outdoor space into something worth slowing down for.",
       "category": "Planter Urn",
-      "img": "assets/cms/1779039506668-xuv4g1.jpg",
+      "img": "assets/plates/boulevard-urn.jpg",
       "imgStaged": "assets/cms/1779422905565-pmok4r.jpg",
       "specs": [
         {
@@ -198,7 +198,7 @@
       "tagline": "Built to last a lifetime",
       "desc": "Some things are built to last a season. The Heritage Urn is built to last a lifetime.\nHandcrafted in Minneapolis from premium Portland cement, the Heritage is a mid-size classic urn that brings old-world character to any outdoor space. Its timeless silhouette draws from traditional European garden design — the kind of craftsmanship that once took generations to master and is rarely seen in today’s mass-produced market.\nSolid, substantial, and beautifully proportioned, the Heritage looks equally at home flanking a front entry, anchoring a patio corner, or standing as a quiet centerpiece in a garden bed. Plant it full with seasonal color or let it stand on its own — either way, it commands attention without demanding it.\nEvery Heritage Urn is cast by hand, one at a time, right here in the Twin Cities. No two are exactly alike. That’s not a flaw — that’s the point.\nFeatures\nHandcrafted from premium Portland cement\nMid-size classic proportions — versatile placement\nTimeless old-world design aesthetic\nBuilt for year-round outdoor durability\nMade in Minneapolis, Minnesota",
       "category": "Planter Urn",
-      "img": "assets/cms/1779422810237-3wlghc.jpg",
+      "img": "assets/plates/vbpr5uv.jpg",
       "imgStaged": "assets/cms/1779422855596-yqxv0d.jpg",
       "specs": [],
       "sizes": [],
@@ -213,8 +213,8 @@
       "tagline": "Classic cherub detail — use as a planter or birdbath.",
       "desc": "Charming, classic, and completely versatile. Featuring a detailed cherub design, this piece works as a decorative planter or flip its purpose entirely and use it as a birdbath to bring life and movement to your garden.",
       "category": "Planter Urn",
-      "img": "assets/cms/1779039567355-d7409v.jpg",
-      "imgStaged": "",
+      "img": "assets/plates/cherub-urn.jpg",
+      "imgStaged": "assets/cms/1779039567355-d7409v.jpg",
       "specs": [
         {
           "k": "Height",
@@ -257,8 +257,8 @@
       "tagline": "Compact and handcrafted — perfect for patios and porches.",
       "desc": "Perfect for patios, porches, windowsills, and outdoor tabletops. Don't let the size fool you — this compact planter has real presence. Use it to showcase a single bold plant, a cluster of succulents, or fresh herbs.",
       "category": "Planter Urn",
-      "img": "assets/photo-courtyard.png",
-      "imgStaged": "",
+      "img": "assets/plates/courtyard-urn.jpg",
+      "imgStaged": "assets/photo-courtyard.png",
       "specs": [
         {
           "k": "Height",
@@ -301,7 +301,7 @@
       "tagline": "Our most compact planter — fits anywhere, looks great everywhere.",
       "desc": "Sleek, simple, and perfectly sized for any surface. A customer favorite for balconies, deck rails, outdoor dining tables, and garden shelves. Group several together for a layered display or let one stand alone as an accent.",
       "category": "Planter Urn",
-      "img": null,
+      "img": "assets/plates/terrace-urn.jpg",
       "imgStaged": "",
       "specs": [
         {
@@ -345,7 +345,7 @@
       "tagline": "A timeless guardian — traditionally displayed in pairs.",
       "desc": "A symbol of protection, power, and prestige. Rooted in centuries of Asian architectural tradition, our hand-poured cement Foo Dog brings that same sense of strength and ceremony to your front door, driveway, or garden. Each piece is poured individually.",
       "category": "Yard Statue",
-      "img": "assets/photo-foodog-raw.png",
+      "img": "assets/plates/foo-dog.jpg",
       "imgStaged": "assets/photo-foodog-staged.png",
       "specs": [
         {
@@ -385,7 +385,7 @@
       "tagline": "Classic Asian stone lantern — pairs with any landscape.",
       "desc": "Steeped in tradition and rich in detail, the Dynasty Lantern brings calm sophistication to any garden, pathway, or outdoor living space. Its substantial weight keeps it grounded through wind and weather, while its sculpted form adds visual interest from every angle.",
       "category": "Yard Statue",
-      "img": "assets/photo-lantern.png",
+      "img": "assets/plates/dynasty-lantern.jpg",
       "imgStaged": "assets/photo-lantern-staged.png",
       "specs": [
         {
@@ -425,7 +425,7 @@
       "tagline": "Regal and richly detailed — our most versatile yard accent.",
       "desc": "A compact statement piece that punches well above its weight. Place it at the base of a planter, along a garden path, on a front step, or as part of a larger decorative vignette. Lightweight enough to reposition easily but solid enough to weather the elements.",
       "category": "Yard Statue",
-      "img": "assets/photo-lion.png",
+      "img": "assets/plates/noble-lion.jpg",
       "imgStaged": "assets/photo-lion-staged.png",
       "specs": [
         {
@@ -465,8 +465,8 @@
       "tagline": "Handcast Cement • Antique Bronze Finish",
       "desc": "Inspired by the grandeur of Regency-era estate gardens, the Regency Medallion Urn is a striking centerpiece that commands attention from the moment it’s placed. Hand-cast in durable cement and finished in a rich Antique Bronze, this urn features an elegant fluted rim, decorative medallion panels around the bowl, and a beautifully ribbed pedestal base — all hallmarks of timeless classical design.\nAt 17 inches tall and 17 inches wide, this urn strikes the perfect balance between bold presence and versatile placement. Set it solo on a front stoop, pair two flanking a driveway entrance, or use it as a garden focal point — the Regency Medallion Urn elevates any outdoor space with old-world sophistication.\nBuilt to last through Minnesota winters and summer sun alike, this piece is as enduring as it is beautiful.\n\n\nAvailability\tLocal pickup (Minneapolis) or nationwide shipping\n\nPerfect For\n•\tFront stoops and entryways\n•\tFlanking driveways and walkways in pairs\n•\tGarden focal points and patio accents\n•\tLandscaping and contractor installations\n\nTwin City Concrete Yard and Garden • Minneapolis, MN • Ships Nationwide",
       "category": "Planter Urn",
-      "img": "assets/cms/1779043867632-vsontb.jpg",
-      "imgStaged": "",
+      "img": "assets/plates/jghezdo.jpg",
+      "imgStaged": "assets/cms/1779043867632-vsontb.jpg",
       "specs": [
         {
           "k": "Height",
@@ -533,6 +533,39 @@
         "placeholder": false,
         "comingSoon": false,
         "id": "6qfowt1"
+      },
+      {
+        "title": "The 4321 Stone",
+        "tag": "Lit Stone",
+        "loc": "",
+        "img": "assets/cms/stone-4321-day.jpg",
+        "desc": "Gray boulder with raised metal numerals 4321, lit amber from behind, set in hostas at the edge of a lawn.",
+        "big": false,
+        "placeholder": false,
+        "comingSoon": false,
+        "id": "k4321"
+      },
+      {
+        "title": "The 4323 Stone",
+        "tag": "After dark",
+        "loc": "",
+        "img": "assets/cms/stone-4323-night.jpg",
+        "desc": "A lit address stone at night, numerals 4323 glowing against the rock.",
+        "big": false,
+        "placeholder": false,
+        "comingSoon": false,
+        "id": "k4323"
+      },
+      {
+        "title": "Raised numerals",
+        "tag": "Detail",
+        "loc": "",
+        "img": "assets/cms/stone-4321-detail.jpg",
+        "desc": "Close view of raised metal numerals with warm light spilling from behind them.",
+        "big": false,
+        "placeholder": false,
+        "comingSoon": false,
+        "id": "k4321d"
       }
     ]
   },
@@ -568,12 +601,8 @@
     },
     "kickers": [
       {
-        "num": "6yr",
+        "num": "3yr",
         "lbl": "In Business"
-      },
-      {
-        "num": "50+",
-        "lbl": "Pieces Cast"
       },
       {
         "num": "100%",
@@ -588,9 +617,8 @@
     "eyebrow": "About",
     "title": "Concrete, Cast By Hand.",
     "paragraphs": [
-      "Hello, neighbor — and welcome to our little corner of the Twin Cities.\nWe are Twin City Concrete Yard & Garden, a Minneapolis-area business built on a simple idea: your outdoor space deserves more than mass-produced plastic and fading resin. We handcraft and carry durable, character-rich concrete pieces — planters, urns, garden statues, yard art, and seasonal accents — designed to grow more beautiful with every Minnesota season that passes.\nWhether you’re sprucing up a front entry, anchoring a backyard garden, or searching for a gift that will last a lifetime, we’re here to help you find exactly the right piece. Come visit us, browse our yard, and let’s bring your outdoor space to life.\n\n\n\nWhat We Offer\nOur yard is stocked with a wide and rotating assortment of concrete pieces for every style, space, and budget:\n\n🪴\tPlanters & Urns\nFrom petite windowsill pots to grand urn pairs perfect for a front porch or garden gate — classic, cottage, and contemporary styles for every taste.\n🦋\tGarden Statues\nAnimals, angels, birds, wildlife, and whimsical figures. Each statue is cast with fine detail and finished to stand up to our harsh winters and warm summers.\n\n🌸\tYard Art & Accents\nBirdbaths, stepping stones, garden benches, and decorative borders — the finishing touches that tie your outdoor space together with style and intention.\n\n🎁\tSeasonal & Gift Items\nRotating seasonal selections and gift-ready pieces perfect for housewarmings, garden lovers, and anyone who appreciates something made to last.\n\n\n\nOur Vision\nWe started Twin City Concrete Yard & Garden with one goal in mind: to give Minneapolis-area homeowners access to the kind of beautiful, lasting outdoor pieces that used to require a specialty trip downtown or an expensive custom order.\nWe believe your yard is an extension of your home — a place where family gathers, neighbors pause, and seasons are celebrated. The right planter, the right statue, the right birdbath doesn’t just decorate a space; it anchors it. It gives it a soul.\nThat’s why every piece we carry is chosen for its quality, its character, and its ability to age gracefully. Concrete, when it’s done right, doesn’t fade or crack in the cold — it develops a beautiful patina, a story worth telling.\nOur vision is simple: to be the place you think of first when you want to make your outdoor space feel like yours. We’re a family business, and we treat every customer like a neighbor — because in this city, you just might be.",
-      "“Come see us — your garden is waiting for its centerpiece.”\nWith warmth,\nThe Family at Twin City Concrete Yard & Garden\nMinneapolis, Minnesota",
-      "BE SEEN,BE FOUND, BE LIT"
+      "Hello, neighbor. Twin City Concrete Yard & Garden is a local, privately owned Minneapolis business built on a simple idea: your outdoor space deserves more than mass-produced plastic and fading resin.",
+      "Every piece is cast here and finished to stand up to our winters. Concrete done right doesn't fade. It picks up a patina and a story worth telling."
     ],
     "img": "assets/cms/1778842561147-0vpgju.jpg",
     "sigName": "Kurt Kujawa",
@@ -632,7 +660,7 @@
     "subtitle": "Fill in the basics below or call the shop directly. Kurt answers his own phone — leave a message if he's out in the yard.",
     "phone": "612-470-8332",
     "phoneHref": "tel:6124708332",
-    "hours": "Sat 9–2 · By Appointment",
+    "hours": "Open daily 9–5",
     "asideTitle": "The Shop",
     "asideBody": "We serve the seven-county Twin Cities metro: Minneapolis, St. Paul, Plymouth, Maple Grove, Eden Prairie, Woodbury, and everywhere in between.",
     "seasonLabel": "Season",
